@@ -1,0 +1,16 @@
+@(elements: views.html.helper.FieldElements)
+@* this template is to mimic the example at http://getbootstrap.com/css/#forms-example *@
+<div class="form-group @if(elements.hasErrors) {has-error}">
+    <label for="@elements.id" >@elements.label</label>
+    @* input might already have a class, if it does add in form-control, if not insert the whole thing *@
+    @if(elements.input.toString().contains("class=")) {
+        @Html(elements.input.toString().replaceFirst("(class=[\"'])", "$1form-control "))
+    } else {
+        @Html(elements.input.toString().replaceFirst("(<\\w+ )", "$1class=\"form-control\" "))
+    }
+    <p class="help-block">@elements.infos.mkString(", ")</p>
+
+    @if(elements.hasErrors) {
+        <p class="help-block">@elements.errors.mkString(", ")</p>
+    }
+</div>

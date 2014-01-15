@@ -8,9 +8,5 @@
     } else {
         @Html(elements.input.toString().replaceFirst("(<\\w+ )", "$1class=\"form-control\" "))
     }
-    <p class="help-block">@elements.infos.mkString(", ")</p>
-
-    @if(elements.hasErrors) {
-        <p class="help-block">@elements.errors.mkString(", ")</p>
-    }
+    @views.html.helper.bootstrap3.helpBlock(elements)
 </div>

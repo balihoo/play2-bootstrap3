@@ -37,4 +37,4 @@ publishMavenStyle := true
 
 publishArtifact in Test := false
 
-credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", System.getenv("sonatypeuser"), System.getenv(" sonatypepassword"))
+credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", System.getenv("sonatypeuser"), System.getenv("sonatypepassword"))

@@ -24,7 +24,7 @@ In your views, you genreally want to update the implicitFieldConstructor. For ex
 @implicitFieldConstructor = @{ FieldConstructor( views.html.helper.bootstrap3.basicForm.inputFieldConstructor.f ) }
 ```
 
-Altenratively to including the twirl.pimpForPlay._ import explicitly, you can add it to all your views by adding this to your build.sbt:
+An altenative to including the twirl.pimpForPlay._ import explicitly, you can add the import to all your views by adding this to your build.sbt:
 ```
 templatesImport += "twirl.pimpForPlay._"
 ```

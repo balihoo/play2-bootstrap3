@@ -17,7 +17,7 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   "com.typesafe.play" %% "play" % "2.2.1",
   //Testing
-  //"junit" % "junit" % "4.11" % "test",
+  "junit" % "junit" % "4.11" % "test",
   "org.specs2" %% "specs2" % "2.1.1" % "test",
   "org.mockito" % "mockito-core" % "1.9.5" % "test"
 )

@@ -20,8 +20,9 @@ libraryDependencies += "com.balihoo" %% "play2-bootstrap3" % (play.core.PlayVers
 
 In your views, you genreally want to update the implicitFieldConstructor. For exampel to use the basic form input control:
 ```
+@import views.html.helper._
 @import twirl.pimpForPlay._
-@implicitFieldConstructor = @{ FieldConstructor( views.html.helper.bootstrap3.basicForm.inputFieldConstructor.f ) }
+@implicitFieldConstructor = @{ helper.FieldConstructor( views.html.helper.bootstrap3.basicForm.inputFieldConstructor.f ) }
 ```
 
 An altenative to including the twirl.pimpForPlay._ import explicitly, you can add the import to all your views by adding this to your build.sbt:

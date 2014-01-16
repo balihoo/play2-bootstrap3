@@ -23,7 +23,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
   "inlineForm inputFieldConstructor" should {
 
 
-    "have has-error class and error p element when errors present" in {
+    "have has-error class and does not have p element when errors present" in {
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns true
       val error1 = UUID.randomUUID().toString
@@ -38,7 +38,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val content = inputFieldConstructor(mockFieldElements).toString()
       content must contain("has-error")
-      content must contain(s"""<p class="help-block">$error1, $error2</p>""")
+      content must not contain("""<p class="help-block">""")
 
 
     }
@@ -65,7 +65,8 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       content must not contain(error2)
     }
 
-    "have label id and text" in {
+    "have label id and text with sr-only class" in {
+      //sr only is for screen readers, inline form hides the label
       val id = UUID.randomUUID().toString
       val label = "label " + id
 
@@ -85,10 +86,10 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
 
       val content = inputFieldConstructor(mockFieldElements).toString()
-      content must contain(s"""<label for="$id" >$label</label>""")
+      content must contain(s"""<label for="$id" class="sr-only">$label</label>""")
     }
 
-    "have info messages displayed if present" in {
+    "have no info messages displayed if present" in {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
@@ -104,7 +105,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
 
       val content = inputFieldConstructor(mockFieldElements).toString()
-      content must contain(s"""<p class="help-block">$info1, $info2</p>""")
+      content must not contain(s"""<p class="help-block">""")
     }
 
 

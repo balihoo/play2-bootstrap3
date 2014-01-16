@@ -31,6 +31,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       mockFieldElements.errors returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
 
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
+
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
       mockHtmlInput.toString returns "<input/>"
@@ -53,6 +56,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       mockFieldElements.errors returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
 
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
+
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
       mockHtmlInput.toString returns "<input/>"
@@ -65,7 +71,50 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       content must not contain(error2)
     }
 
-    "have label id and text" in {
+    "have wrapper div that defaults to col-sm-5" in {
+      val mockFieldElements = mock[FieldElements]
+      mockFieldElements.hasErrors returns true
+      val error1 = UUID.randomUUID().toString
+      val error2 = UUID.randomUUID().toString
+      mockFieldElements.errors returns Seq(error1, error2)
+      mockFieldElements.infos returns Seq()
+
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
+
+      val mockHtmlInput = mock[Html]
+      mockFieldElements.input returns mockHtmlInput
+      mockHtmlInput.toString returns "<input/>"
+
+
+      val content = inputFieldConstructor(mockFieldElements).toString()
+      content must contain("""<div class="col-sm-5">""")
+
+    }
+
+    "have wrapper div that uses supplied inputDivClass argument" in {
+      val mockFieldElements = mock[FieldElements]
+      mockFieldElements.hasErrors returns true
+      val error1 = UUID.randomUUID().toString
+      val error2 = UUID.randomUUID().toString
+      mockFieldElements.errors returns Seq(error1, error2)
+      mockFieldElements.infos returns Seq()
+
+      val divClass = UUID.randomUUID().toString
+      val args = Map[Symbol, Any]('inputDivClass -> divClass)
+      mockFieldElements.args returns args
+
+      val mockHtmlInput = mock[Html]
+      mockFieldElements.input returns mockHtmlInput
+      mockHtmlInput.toString returns "<input/>"
+
+
+      val content = inputFieldConstructor(mockFieldElements).toString()
+      content must contain(s"""<div class="$divClass">""")
+
+    }
+
+    "have label id and text with col-sm-2 & control-label class" in {
       val id = UUID.randomUUID().toString
       val label = "label " + id
 
@@ -73,6 +122,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       mockFieldElements.hasErrors returns false
       mockFieldElements.id returns id
       mockFieldElements.label returns label
+
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
 
       val error1 = UUID.randomUUID().toString
       val error2 = UUID.randomUUID().toString
@@ -85,7 +137,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
 
       val content = inputFieldConstructor(mockFieldElements).toString()
-      content must contain(s"""<label for="$id" >$label</label>""")
+      content must contain(s"""<label for="$id" class="col-sm-2 control-label">$label</label>""")
     }
 
     "have info messages displayed if present" in {
@@ -97,6 +149,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq(info1, info2)
+
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
@@ -118,6 +173,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
 
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
+
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
       mockHtmlInput.toString returns """<input class="someclass"/>"""
@@ -136,6 +194,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
+
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
@@ -156,6 +217,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
+
+      val args = Map[Symbol, Any]()
+      mockFieldElements.args returns args
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput

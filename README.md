@@ -4,7 +4,7 @@ latest [![Build Status](https://travis-ci.org/balihoo/play2-bootstrap3.png)](htt
 play2-bootstrap3
 ================
 
-View Helpers for Bootstrap 3 in Play 2
+View Helpers & Field Construtors for Bootstrap 3 in Play 2.  Play generates bootstrap 2 compatible inputs, but if you want to use bootstrap 3 your are out of luck.  This package makes it easy to use bootstrap3 styling in your views and forms.
 
 
 Using

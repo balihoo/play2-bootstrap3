@@ -32,6 +32,8 @@ templatesImport += "twirl.pimpForPlay._"
 
 Ditto the helper, although that's not there for play2-bootstrap3 just for FieldConstructor and inputText etc.
 
+If you're still a bit lost about what a field constructor is be sure to read about them in the play documentation http://www.playframework.com/documentation/2.2.x/ScalaCustomFieldConstructors
+
 Credit
 ============
 The original inspiration & code for this project was discussed at https://groups.google.com/forum/#!topic/play-framework/fVQbxZIC8vE

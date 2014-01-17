@@ -31,3 +31,7 @@ templatesImport += "twirl.pimpForPlay._"
 ```
 
 Ditto the helper, although that's not there for play2-bootstrap3 just for FieldConstructor and inputText etc.
+
+Credit
+============
+The original inspiration & code for this project was discussed at https://groups.google.com/forum/#!topic/play-framework/fVQbxZIC8vE

@@ -1,6 +1,6 @@
 @(elements: views.html.helper.FieldElements)
 @* this template is to mimic the example at http://getbootstrap.com/css/#forms-inline *@
-<div class="form-group @if(elements.hasErrors) {has-error}">
+<div class="form-group @elements.args.get('_class).map(_.toString) @if(elements.hasErrors) {has-error}">
     <label for="@elements.id" class="sr-only">@elements.label</label>
 	@if(elements.input.toString().contains("class=")) {
 		@Html(elements.input.toString().replaceFirst("(class=[\"'])", "$1form-control "))

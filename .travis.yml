@@ -1,10 +1,17 @@
 language: scala
 scala:
 - 2.10.3
+
 env:
   global:
   - secure: bPSpFysngTaSAFoeRenv6xDmYsi3ouWmqD1N3BahUQc1kvvjGAGOYFGA6UOStwDXVtyNalcSFU5AdN5ygQyJqFpProSSb1zTQ1ZJH4+AtrIsdNMUjKtK3dhaOcJ0JqZARNzwsfS+U37wHkoAq7Sk+REftO6gm4uLUKwgZ8xNfMw=
   - secure: i7wh5fSLE76V/S4P8F7Zg/h/ta9JFUhOcCvr9MoHo6YdNzUsGnKPOgoxxYAMrvzLPjJe9k6C7tTLiGRCHsEzyNjIcYxLdl1tpRGxVYwy62m7YaRfj0YQUQj14aYy+VinfWbTiAO84Hdzw+7fYDg70HOHe00K+aDnVOsVoEnTLcE=
+
+notifications:
+  webhooks:
+    urls:
+      - secure: "MqmKFUS94D2W5UGeruOk7/rI46KoemRu9b7Z/GF6ylmfskoHsEI918QpvtlLgjYANGMgU6W7cjg/6sedHduJjoN6dqM5W8oGOSVN3EvhfX4Z01jXNI2IwMFfaLwlEMGOZ7W+aAxIC6wC+Hkra0Ac7SzGCg9gkiPAmhfb4ms43Co="
+    on_start: true
 
 after_success:
     - sbt publish

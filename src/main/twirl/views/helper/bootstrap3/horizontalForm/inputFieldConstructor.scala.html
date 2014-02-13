@@ -1,6 +1,6 @@
 @(elements: views.html.helper.FieldElements)
 @* this template is to mimic the example at http://getbootstrap.com/css/#forms-horizontal *@
-<div class="form-group @if(elements.hasErrors) {has-error}">
+<div class="form-group @elements.args.get('_class).map(_.toString) @if(elements.hasErrors) {has-error}">
     <label for="@elements.id" class="col-sm-2 control-label">@elements.label</label>
     <div class="@elements.args.toMap.get('inputDivClass).getOrElse("col-sm-5")">
 

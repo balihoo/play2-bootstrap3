@@ -30,6 +30,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       val error2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
+      mockFieldElements.args returns Map()
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
@@ -52,6 +53,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       //even though there are errors, becuase hasError returns false, these should not be output
       mockFieldElements.errors returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
+      mockFieldElements.args returns Map()
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
@@ -74,6 +76,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       mockFieldElements.hasErrors returns false
       mockFieldElements.id returns id
       mockFieldElements.label returns label
+      mockFieldElements.args returns Map()
 
       val error1 = UUID.randomUUID().toString
       val error2 = UUID.randomUUID().toString
@@ -98,6 +101,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
       val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq(info1, info2)
+      mockFieldElements.args returns Map()
 
       val mockHtmlInput = mock[Html]
       mockFieldElements.input returns mockHtmlInput
@@ -113,9 +117,7 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
-
-      val info1 = UUID.randomUUID().toString
-      val info2 = UUID.randomUUID().toString
+      mockFieldElements.args returns Map()
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
 
@@ -132,9 +134,8 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.args returns Map()
 
-      val info1 = UUID.randomUUID().toString
-      val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
 
@@ -152,9 +153,8 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.args returns Map()
 
-      val info1 = UUID.randomUUID().toString
-      val info2 = UUID.randomUUID().toString
       mockFieldElements.errors returns Seq()
       mockFieldElements.infos returns Seq()
 
@@ -166,6 +166,25 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val content = inputFieldConstructor(mockFieldElements).toString()
       content must contain(s"""<input class="form-control" />""")
+    }
+
+    "have class arg applied to outmost div" in {
+
+      val mockFieldElements = mock[FieldElements]
+      mockFieldElements.hasErrors returns false
+      mockFieldElements.args returns Map('_class -> "someclass")
+
+      mockFieldElements.errors returns Seq()
+      mockFieldElements.infos returns Seq()
+
+      val mockHtmlInput = mock[Html]
+      mockFieldElements.input returns mockHtmlInput
+      mockHtmlInput.toString returns """<input />""" //note the space is required..maybe this is a bug?
+
+      //If the class attribute is not there insert in the bootstrap3 one
+
+      val content = inputFieldConstructor(mockFieldElements).toString()
+      content must contain(s"""<div class="form-group someclass""")
     }
 
   }

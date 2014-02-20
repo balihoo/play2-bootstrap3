@@ -11,6 +11,7 @@ import play.api.templates.Html
 import java.util.UUID
 
 import views.html.helper.bootstrap3.inlineForm.inputFieldConstructor
+import play.api.i18n.Lang
 
 /**
  * Add your spec here.
@@ -22,13 +23,16 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
   "inlineForm inputFieldConstructor" should {
 
+    val fakeLanguage = Lang("ha")
 
     "have has-error class and does not have p element when errors present" in {
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns true
+      mockFieldElements.lang returns fakeLanguage
+
       val error1 = UUID.randomUUID().toString
       val error2 = UUID.randomUUID().toString
-      mockFieldElements.errors returns Seq(error1, error2)
+      mockFieldElements.errors(fakeLanguage) returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
       mockFieldElements.args returns Map()
 
@@ -48,10 +52,12 @@ class inputFieldConstructorSpec extends Specification with Mockito {
     "not have has-error class or error p element when errors not present" in {
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
+
       val error1 = UUID.randomUUID().toString
       val error2 = UUID.randomUUID().toString
       //even though there are errors, becuase hasError returns false, these should not be output
-      mockFieldElements.errors returns Seq(error1, error2)
+      mockFieldElements.errors(fakeLanguage) returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
       mockFieldElements.args returns Map()
 
@@ -74,13 +80,14 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
       mockFieldElements.id returns id
       mockFieldElements.label returns label
       mockFieldElements.args returns Map()
 
       val error1 = UUID.randomUUID().toString
       val error2 = UUID.randomUUID().toString
-      mockFieldElements.errors returns Seq(error1, error2)
+      mockFieldElements.errors(fakeLanguage) returns Seq(error1, error2)
       mockFieldElements.infos returns Seq()
 
       val mockHtmlInput = mock[Html]
@@ -96,10 +103,11 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
 
       val info1 = UUID.randomUUID().toString
       val info2 = UUID.randomUUID().toString
-      mockFieldElements.errors returns Seq()
+      mockFieldElements.errors(fakeLanguage) returns Seq()
       mockFieldElements.infos returns Seq(info1, info2)
       mockFieldElements.args returns Map()
 
@@ -117,8 +125,9 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
       mockFieldElements.args returns Map()
-      mockFieldElements.errors returns Seq()
+      mockFieldElements.errors(fakeLanguage) returns Seq()
       mockFieldElements.infos returns Seq()
 
       val mockHtmlInput = mock[Html]
@@ -134,9 +143,10 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
       mockFieldElements.args returns Map()
 
-      mockFieldElements.errors returns Seq()
+      mockFieldElements.errors(fakeLanguage) returns Seq()
       mockFieldElements.infos returns Seq()
 
       val mockHtmlInput = mock[Html]
@@ -153,9 +163,10 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
       mockFieldElements.args returns Map()
 
-      mockFieldElements.errors returns Seq()
+      mockFieldElements.errors(fakeLanguage) returns Seq()
       mockFieldElements.infos returns Seq()
 
       val mockHtmlInput = mock[Html]
@@ -172,9 +183,10 @@ class inputFieldConstructorSpec extends Specification with Mockito {
 
       val mockFieldElements = mock[FieldElements]
       mockFieldElements.hasErrors returns false
+      mockFieldElements.lang returns fakeLanguage
       mockFieldElements.args returns Map('_class -> "someclass")
 
-      mockFieldElements.errors returns Seq()
+      mockFieldElements.errors(fakeLanguage) returns Seq()
       mockFieldElements.infos returns Seq()
 
       val mockHtmlInput = mock[Html]

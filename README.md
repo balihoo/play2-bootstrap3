@@ -27,7 +27,7 @@ In your views, you generally want to update the implicitFieldConstructor. For ex
 
 As an altenative to including the twirl.pimpForPlay._ import explicitly, you can add the import to all your views by adding this to your build.sbt:
 ```
-templatesImport += "twirl.pimpForPlay._"
+TwirlKeys.templateImports += "twirl.pimpForPlay._"
 ```
 
 Ditto the helper, although that's not there for play2-bootstrap3, just for FieldConstructor and inputText etc.
